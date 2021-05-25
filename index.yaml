@@ -53,6 +53,16 @@ entries:
     version: 0.1.3
   - apiVersion: v2
     appVersion: 0.1.0
+    created: "2021-05-25T19:13:06.752036966Z"
+    description: A Helm chart for Camel Web Service On Kubernetes
+    digest: e47ebd4deaa4137a2a73019c395f0940b24718c1095fdd070b3846d1b2c8cf72
+    name: camel-web-service
+    type: application
+    urls:
+    - https://github.com/MS3Inc/charts/releases/download/camel-web-service-0.1.2/camel-web-service-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
+    appVersion: 0.1.0
     created: "2021-03-04T00:53:12.325301574Z"
     description: A Helm chart for Camel Web Service On Kubernetes
     digest: 4095a3ce85d865740873f0e790b4c73918600e25bee8ff28e75d21846d29443d
