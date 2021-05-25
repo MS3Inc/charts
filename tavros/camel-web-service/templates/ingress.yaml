@@ -31,10 +31,6 @@ spec:
     - host: {{ .host | quote }}
       http:
         paths:
-          - path: /{{ $fullName }}
-            backend:
-              serviceName: {{ $fullName }}
-              servicePort: {{ $svcPort }}
           {{- range .paths }}
           - path: {{ . }}
             backend:
