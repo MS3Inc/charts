@@ -49,11 +49,11 @@ ingress:
     konghq.com/strip-path: "true"
     konghq.com/protocols: https
     kubernetes.io/ingress.class: prod
-    cert-manager.io/cluster-issuer: troubadour
+    cert-manager.io/cluster-issuer: tavros
     konghq.com/https-redirect-status-code: '302'
   hosts:
     - host: apps.example.com
-      paths: []
+      paths: ["/"]
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:
