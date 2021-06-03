@@ -53,7 +53,7 @@ ingress:
     konghq.com/https-redirect-status-code: '302'
   hosts:
     - host: apps.example.com
-      paths: ["/"]
+      paths: []
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:
