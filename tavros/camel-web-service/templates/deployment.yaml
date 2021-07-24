@@ -21,7 +21,7 @@ spec:
         co.elastic.logs.camel-web-service/json.add_error_key: "true"
         co.elastic.logs.camel-web-service/json.message_key: message
         co.elastic.monitor/type: http
-        co.elastic.monitor/hosts: "{{ include "camel-web-service.fullname" . }}:8080/actuator/health"
+        co.elastic.monitor/hosts: "{{ include "camel-web-service.fullname" . }}.{{.Release.Namespace}}.svc.cluster.local:19001/8080/actuator/health/liveness"
         co.elastic.monitor/schedule: "@every 5s"
     {{- with .Values.podAnnotations }}
         {{- toYaml . | nindent 8 }}
@@ -49,20 +49,23 @@ spec:
             - name: actuator
               containerPort: 8080
               protocol: TCP
-          # readinessProbe:
-          #   httpGet:
-          #     path: /actuator/health/readiness
-          #     port: actuator
-          #   failureThreshold: 2
-          #   initialDelaySeconds: 20
-          #   periodSeconds: 10
-          # livenessProbe:
-          #   httpGet:
-          #     path: /actuator/health/liveness
-          #     port: actuator
-          #   failureThreshold: 2
-          #   initialDelaySeconds: 30
-          #   periodSeconds: 10
+            - name: hb-monitor
+              containerPort: 19001
+              protocol: TCP
+          readinessProbe:
+            httpGet:
+              path: /actuator/health/readiness
+              port: actuator
+        {{- with .Values.readinessProbe }}
+            {{- toYaml . | nindent 12 }}
+        {{- end }}
+          livenessProbe:
+            httpGet:
+              path: /actuator/health/liveness
+              port: actuator
+        {{- with .Values.livenessProbe }}
+            {{- toYaml . | nindent 12 }}
+        {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           env:
