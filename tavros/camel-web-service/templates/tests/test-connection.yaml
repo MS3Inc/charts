@@ -9,7 +9,7 @@ metadata:
 spec:
   containers:
     - name: wget
-      image: busybox
-      command: ['wget']
-      args: ['{{ include "camel-web-service.fullname" . }}:{{ .Values.service.port }}']
+      image: curlimages/curl
+      command: ['curl']
+      args: ['{{ include "camel-web-service.fullname" . }}.{{.Release.Namespace}}.svc.cluster.local:{{ .Values.service.port }}']
   restartPolicy: Never
