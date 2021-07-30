@@ -1,7 +1,9 @@
 {{- if .Values.ingress.enabled -}}
 {{- $fullName := include "camel-web-service.fullname" . -}}
 {{- $svcPort := .Values.service.port -}}
-{{- if semverCompare ">=1.14-0" .Capabilities.KubeVersion.GitVersion -}}
+{{- if semverCompare ">=1.19-0" .Capabilities.KubeVersion.GitVersion -}}
+apiVersion: networking.k8s.io/v1
+{{- else if semverCompare ">=1.14-0" .Capabilities.KubeVersion.GitVersion -}}
 apiVersion: networking.k8s.io/v1beta1
 {{- else -}}
 apiVersion: extensions/v1beta1
@@ -31,6 +33,25 @@ spec:
     - host: {{ .host | quote }}
       http:
         paths:
+        {{- if semverCompare ">=1.19-0" $.Capabilities.KubeVersion.GitVersion -}}
+          {{- range .paths }}
+          - path: {{ . }}
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: {{ $fullName }}
+                port:
+                  number: {{ $svcPort }}
+          {{else}}
+          - path: /{{ $fullName }}
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: {{ $fullName }}
+                port:
+                  number: {{ $svcPort }}
+          {{- end }}
+        {{- else -}}
           {{- range .paths }}
           - path: {{ . }}
             backend:
@@ -42,5 +63,6 @@ spec:
               serviceName: {{ $fullName }}
               servicePort: {{ $svcPort }}
           {{- end }}
+        {{- end }}
     {{- end }}
   {{- end }}
