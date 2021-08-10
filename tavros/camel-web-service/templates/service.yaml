@@ -8,6 +8,9 @@ metadata:
     {{ .Values.service.port }}.service.kuma.io/protocol: http
     8080.service.kuma.io/protocol: http
     ingress.kubernetes.io/service-upstream: "true"
+{{- with .Values.service.annotations }}
+  {{- toYaml . | nindent 4 }}
+{{- end }}
 spec:
   type: {{ .Values.service.type }}
   ports:
