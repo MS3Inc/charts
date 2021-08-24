@@ -47,13 +47,13 @@ livenessProbe:
   initialDelaySeconds: 60
   periodSeconds: 10
 
-resources:
-  limits:
-    cpu: 500m
-    memory: 1Gi
-  requests:
-    cpu: 200m
-    memory: 512Mi
+# resources:
+#   limits:
+#     cpu: 500m
+#     memory: 1Gi
+#   requests:
+#     cpu: 200m
+#     memory: 512Mi
 
 replicaCount: 1
 
