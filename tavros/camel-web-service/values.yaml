@@ -38,11 +38,17 @@ ingress:
   #      - chart-example.local
 
 readinessProbe:
+  httpGet:
+    path: /actuator/health/readiness
+    port: actuator
   failureThreshold: 2
   initialDelaySeconds: 30
   periodSeconds: 10
 
 livenessProbe:
+  httpGet:
+    path: /actuator/health/liveness
+    port: actuator
   failureThreshold: 2
   initialDelaySeconds: 60
   periodSeconds: 10

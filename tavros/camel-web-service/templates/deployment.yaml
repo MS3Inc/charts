@@ -52,18 +52,12 @@ spec:
             - name: hb-monitor
               containerPort: 19001
               protocol: TCP
-          readinessProbe:
-            httpGet:
-              path: /actuator/health/readiness
-              port: actuator
         {{- with .Values.readinessProbe }}
+          readinessProbe:
             {{- toYaml . | nindent 12 }}
         {{- end }}
-          livenessProbe:
-            httpGet:
-              path: /actuator/health/liveness
-              port: actuator
         {{- with .Values.livenessProbe }}
+          livenessProbe:
             {{- toYaml . | nindent 12 }}
         {{- end }}
           env:
