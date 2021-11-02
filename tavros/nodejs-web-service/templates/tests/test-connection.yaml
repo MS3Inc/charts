@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ include "nodejs-web-service.fullname" . }}-test-connection"
+  labels:
+    {{- include "nodejs-web-service.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": test-success
+spec:
+  containers:
+    - name: wget
+      image: curlimages/curl
+      command: ['curl']
+      args: ['{{ include "nodejs-web-service.fullname" . }}.{{.Release.Namespace}}.svc.cluster.local:{{ .Values.service.port }}']
+  restartPolicy: Never
