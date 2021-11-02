@@ -44,7 +44,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
-              containerPort: 9000
+              containerPort: 3000
               protocol: TCP
             - name: actuator
               containerPort: 8080
