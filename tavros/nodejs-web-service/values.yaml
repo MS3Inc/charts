@@ -39,16 +39,16 @@ ingress:
 
 readinessProbe:
   httpGet:
-    path: /actuator/health/readiness
-    port: actuator
+    path: /health/ready
+    port: 9000
   failureThreshold: 2
   initialDelaySeconds: 30
   periodSeconds: 10
 
 livenessProbe:
   httpGet:
-    path: /actuator/health/liveness
-    port: actuator
+    path: /health/live
+    port: 9000
   failureThreshold: 2
   initialDelaySeconds: 60
   periodSeconds: 10
