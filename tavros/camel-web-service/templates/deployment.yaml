@@ -60,6 +60,8 @@ spec:
           livenessProbe:
             {{- toYaml . | nindent 12 }}
         {{- end }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
           env:
             - name: JAEGER_SERVICE_NAME
               value: {{ .Release.Name }}
