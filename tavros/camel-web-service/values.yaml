@@ -53,6 +53,14 @@ livenessProbe:
   initialDelaySeconds: 60
   periodSeconds: 10
 
+startupProbe:
+  httpGet:
+    path: /actuator/health/liveness
+    port: actuator
+  failureThreshold: 6
+  initialDelaySeconds: 60
+  periodSeconds: 10
+
 resources: {}
 #   limits:
 #     cpu: 500m
