@@ -1,0 +1,20 @@
+suite: camel web service
+templates: 
+  - deployment.yaml
+release:
+  name: system-api
+tests:
+  - it: deployment should have the correct metadata name
+    template: deployment.yaml      
+    asserts:
+      - equal:
+          path: metadata.name
+          value: system-api-camel-web-service
+  - it: image name is correct
+    values:
+    - test-values.yaml
+    template: deployment.yaml      
+    asserts:
+      - equal:
+          path: spec.template.spec.containers[0].image
+          value: registry.something.com/sample:1.0.0-SNAPSHOT

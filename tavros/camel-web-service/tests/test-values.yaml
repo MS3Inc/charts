@@ -1,0 +1,3 @@
+image:
+  repository: registry.something.com/sample
+  tag: 1.0.0-SNAPSHOT
