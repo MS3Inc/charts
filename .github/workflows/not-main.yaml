@@ -2,8 +2,8 @@ name: Push to NOT main
 
 on:
   push:
-    branches:
-      - 'allow-security-context-overriding'
+    branches-ignore:
+      - 'main'
 
 jobs:
   unit-test:
