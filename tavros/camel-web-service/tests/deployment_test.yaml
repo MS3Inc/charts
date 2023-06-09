@@ -18,3 +18,11 @@ tests:
       - equal:
           path: spec.template.spec.containers[0].image
           value: registry.something.com/sample:1.0.0-SNAPSHOT
+  - it: security context can be overriden
+    values:
+    - test-values.yaml
+    template: deployment.yaml      
+    asserts:
+      - equal:
+          path: spec.template.spec.containers[0].securityContext
+          value: {}
