@@ -25,5 +25,6 @@ jobs:
 
       - name: Run helm unittest
         run: |
+          ls
           helm plugin install https://github.com/helm-unittest/helm-unittest.git
-          helm unittest charts/tavros/camel-web-service
+          helm unittest .
