@@ -25,4 +25,15 @@ tests:
     asserts:
       - equal:
           path: spec.template.spec.containers[0].securityContext
-          value: {}
+          value: null
+  - it: resources set
+    values:
+    - test-values.yaml
+    template: deployment.yaml      
+    asserts:
+      - isSubset:
+          path: spec.template.spec.containers[0].resources
+          content:
+            requests:
+              cpu: 50m
+              memory: 500Mi

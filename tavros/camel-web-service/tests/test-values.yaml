@@ -1,4 +1,8 @@
 image:
   repository: registry.something.com/sample
   tag: 1.0.0-SNAPSHOT
-securityContext: {}
+securityContext: null
+resources:
+  requests:
+    cpu: 50m
+    memory: 500Mi
