@@ -49,9 +49,6 @@ spec:
             - name: actuator
               containerPort: 8080
               protocol: TCP
-            - name: hb-monitor
-              containerPort: 19001
-              protocol: TCP
         {{- with .Values.readinessProbe }}
           readinessProbe:
             {{- toYaml . | nindent 12 }}
