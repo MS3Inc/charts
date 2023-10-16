@@ -21,7 +21,7 @@ spec:
         co.elastic.logs.camel-web-service/json.add_error_key: "true"
         co.elastic.logs.camel-web-service/json.message_key: message
         co.elastic.monitor/type: http
-        co.elastic.monitor/hosts: "{{ include "camel-web-service.fullname" . }}.{{.Release.Namespace}}.svc.cluster.local:19001/8080/actuator/health/liveness"
+        co.elastic.monitor/hosts: "{{ include "camel-web-service.fullname" . }}.{{.Release.Namespace}}.svc.cluster.local:8080/actuator/health/liveness"
         co.elastic.monitor/schedule: "@every 5s"
     {{- with .Values.podAnnotations }}
         {{- toYaml . | nindent 8 }}
